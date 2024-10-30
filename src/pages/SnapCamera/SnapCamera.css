@@ -1,0 +1,304 @@
+/* /SnapLeadAR/src/pages/SnapCamera/SnapCamera.css */
+/* Base container styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Video container styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 9/16;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.video-container.hidden {
+  display: none;
+}
+
+.video-container video,
+.video-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Camera controls */
+.camera-controls {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  z-index: 10;
+  padding: 0 16px;
+}
+
+/* Base button styles */
+.camera-button,
+.download-button,
+.share-button,
+.record-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Record button specific styles */
+.record-button {
+  background-color: rgba(255, 45, 85, 0.95);
+}
+
+.record-button.recording {
+  box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.3);
+  animation: pulse 2s infinite;
+}
+
+/* Download button specific styles */
+.download-button {
+  background-color: rgba(0, 122, 255, 0.95);
+}
+
+.download-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Share button specific styles */
+.share-button {
+  background-color: rgba(88, 86, 214, 0.95);
+}
+
+.share-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Active states for all buttons */
+.record-button:active,
+.camera-button:active,
+.download-button:active,
+.share-button:active {
+  transform: scale(0.95);
+}
+
+.record-button:active {
+  background-color: rgba(255, 45, 85, 0.8);
+}
+
+.camera-button:active {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.download-button:active:not(:disabled) {
+  background-color: rgba(0, 122, 255, 0.8);
+}
+
+.share-button:active:not(:disabled) {
+  background-color: rgba(88, 86, 214, 0.8);
+}
+
+/* Icon styles */
+.material-symbols-rounded {
+  font-size: 24px;
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Timer styles */
+.timer-container {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.timer {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Recording animation */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 85, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 45, 85, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 45, 85, 0);
+  }
+}
+
+/* Timer animation */
+@keyframes countdown {
+  0% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+.timer.animate {
+  animation: countdown 1s ease infinite;
+}
+
+/* Additional controls container */
+.additional-controls {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.additional-controls.visible {
+  display: flex;
+  gap: 24px;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide footer */
+.footer {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .video-container {
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .camera-controls {
+    bottom: 24px;
+    gap: 20px;
+  }
+
+  .timer {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .camera-controls {
+    bottom: 16px;
+    gap: 16px;
+  }
+
+  .timer {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+  }
+
+  .material-symbols-rounded {
+    font-size: 20px;
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: no-preference) {
+  .video-container {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record-button,
+  .camera-button,
+  .download-button,
+  .share-button,
+  .timer,
+  .video-container {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .record-button {
+    background-color: #ff0000;
+  }
+
+  .download-button {
+    background-color: #0066cc;
+  }
+
+  .share-button {
+    background-color: #6600cc;
+  }
+
+  .timer {
+    background-color: #000;
+    border: 2px solid #fff;
+  }
+}

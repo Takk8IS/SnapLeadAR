@@ -1,0 +1,36 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server/server.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "server/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "build/$1"
+        }
+    ],
+    "env": {
+        "SERVER_URL": "https://snap-lead-ar.vercel.app",
+        "PORT": "8016",
+        "GOOGLE_SERVICE_ACCOUNT_EMAIL": "takk8is@hermeshim-takk8is.iam.gserviceaccount.com",
+        "GOOGLE_PRIVATE_KEY": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCY7bfaeWHeHcxX\nRVgNG27IVzf065UK0pPFU/BeFZJrN4DV+reNrL//QMJrzvffzT1HFUrzaS9eR5ig\nZlHWBWpg7brskqVYi84S+JMY2I+cLW5crpXFIJFyNvc6HcTLbOasrSNUFlgTzynr\nwOtJwx30g490xUASMitstWHinev4VOqvXSbWqjb02Ea3AGJQPTbwGkF/yMauts1T\nX8WozEKVWepNc4p5dBpESPjC/xpRdfGITeepvVT7sAi8Kyr8sofYRtg1yFew/wPw\nDniv0SLXf2yV/W6+HGQWPnFsMmuYATbmP038Zkyygnliv0plvTQiMo3vCWFkAmI0\nCzeC1eqZAgMBAAECggEAJLaxNEB+x9nEhFEP/fmPg4Y411I1UkdSlYV8x8GLCLVm\n9zf9GASYhVmRM1uZM3/szaNlfoFKj2pF0IAv9l8PdlysSv47tsG9g91sRwM6muZn\nP9Xj+9LBSDe865VY+PNYf60DNb01gO/zovcKJYezqc9pwcFXC+dCeJMlAEgkbdXq\nBxqX2Hba5em3UaYmeMUrThM6eIUaxxLPBoKATE3EyhhtZL8wgHan4OhvZiRNloO2\n91O08V8YA7YdWW4glp3kFx2j2hrwmN0Q7ocpUDuBVr2/3FPzuHxnOLH7qH5pbEMU\nYHiAmht+S894qf88gTAu753Qu3IFM9zWBsskb0M2eQKBgQDK3Y5sEmBTqrGdNZsI\nDLC2QcexLkoVPZQ3DAQOCuLyXiUeMYzQhOhzaDwHOoKQRMOXTntuIknovYVe5yxo\n4tLjdTdkoYawUhH8GSjMpUIr1dWTg2qPYXwd0hr4SX99uiGZEfGko4BzTSd3Af6j\n2wEOULXbU4lfErKGIrYgLyj2XQKBgQDA+9E8ch/3wyoygnQ7ABpqzwjrnnz0luo9\nKD9mkvfRQ2XYsRjUNL+VU5auRpG+qjYht0j/HOQy9sJbacLr1yNsfvQJDH6X9Qw5\nuY8azL1cSh//jV/FyOhcHdVRWFwPQIIjJSGwGyfrUlamKZhtt3X+REh8iNuDy87C\nUymDfW7JbQKBgQDCXL+Fn52Wy6XcX22nqrDsDd4LTbRA4XzNuL9xzNBfMgASC5tE\ndPJZD/bjXhWVr6xNnS34+PUi/eF4abhMzXUL5FQsH+3xpNACXwCOAY+CfB9ic7h2\nownNcG3SkGiLxvdFtsFz4grBbZxwEwMrbjp2wrFZ75Ff+4P7q+oer9BpKQKBgQCi\nQ9pmCcvJZweXGsuiRG7x+g0VGNkWS8K/E5VjqRXIlfQP5LDs1UF1zKf494talwIX\nDWbKYz+ZfpRjiqUD6ox1kLWe2iujl77k1pp2PUrHS+hl1zh9NHXz5n3T/QjDJkmG\nRZVy3xKMsln7MyRgtI748e9FD0oMIpVCHezdC93YbQKBgQCj67itwvRGwOZf+TrK\n/oJCnIYe41XedMtkPCNLzH1KI7TkngrE0lPZANhQXr81xtUjrhleZQ6eExKf4a4O\nC9Bk/tVKg8SdYNR9PWvRCuZwT/+9yfqeF0zN8pRd5inAyom0a6yqptBoMHEL7Ul+\n3oEAtzmaecZmiJ0n6kVii3m2Cg==\n-----END PRIVATE KEY-----\n",
+        "SPREADSHEET_ID": "1wLy_OeJIA0Up5L8idxaC6G2bmAtJHbeuICp1_oB7MGg",
+        "REACT_APP_LENS_GROUP_ID": "6f38e5dc-33d2-4efd-884c-dade4807901d",
+        "REACT_APP_API_TOKEN": "eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzI1MTM2NjQwLCJzdWIiOiIyZDliMWI1My01NTVjLTQyY2MtOTM1Ni02NTJjYzFiYThkNTF-U1RBR0lOR342YzZkYjZhYy1kZjA0LTQ3OWUtOWUxNi04NTQ0NTRjZjY3MjYifQ.3rkrTlYGsQUsAKE55005MaqxaIqOaas619G818sBJas",
+        "REACT_APP_LENS_IDS": "4e31438a-61ef-411d-b83a-560bc15c7349,5696d8b1-19b4-44ff-bc17-40bc7c8a3f6a,719ffc69-769a-4b77-8516-abf83d44808a,77e8072d-9ff4-4b10-8099-e602f6668553,8d868db2-aef4-40af-a7-01cf3dde6e52,8ec6e2e0-451f-4249-a1fa-dda93bbaa8b8,90492acf-d664-42c1-91e2-e0f1afd95615,e6303662-16b5-47f0-b94d-706ea212d34c,f0ec2b89-9e92-467e-80d2-9f97bacb4e6c"
+    }
+}
